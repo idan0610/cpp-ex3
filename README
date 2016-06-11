@@ -1,0 +1,36 @@
+Results of Parallel Checker:
+
+			|			Small				|				Big
+------------------------------------------------------------------------------------
+			|		+		|		*		|		+		|		*
+====================================================================================
+Sequential	|5.77e-07sec	|8.62e-07sec	|0.00863699sec	|16.385sec		|
+------------------------------------------------------------------------------------
+Parallel	|5.588e-05sec	|2.5092e-05sec	|3.51998sec		|5.31201sec		|
+
+Answers to the questions:
+I) The difference between the 2 sets of data is that one of them contain large amount of data
+and the other small amount. In sequential the running time of the small set is lower then parallel
+because for small data it is better to run the program in sequential method because in parallel
+method it takes time to initialize the threads that runs with very small amount of data each and
+therefore it may be better to just run the whole program in sequential method on this data.
+For the big set, the sequential method still had lower running time then the parallel method for
+the + operator, because my implementation of the sequential time is just one loop who iterate over
+all the cells in the vector represents the matrix and adds the values from the two matrices (this
+and the other matrix) to create the new matrix. On the other hand, the parallel method of + operator
+takes more time running because it needs first to initialize the threads (and probably there are
+many threads) and then each thread is running on big amount of data, and the result is that all
+this process takes significantly more running time then the sequential method. For the * operator,
+it is significantly faster to run the big set on the parallel method because the sequential method
+of * operator is in O(n^3) run time complexity and in the parallel method, it takes o(n) run time
+complexity to initiate the threads and then each thread runs on o(n^2) run time complexity which
+exponential very faster (n in all complexities means the number of rows of the result matrix).
+
+II) The + and - operators are much faster then the * operator because the algorithm for them is
+just add/subtract values cell by cell, and in my implementation where the whole matrix is allocated
+on a single vector, it even faster because no time running is wasted on accessing memory slots
+located on different places. On the other hand, the algorithm for the * operator takes much more
+time and therefore the running time is significantly larger (O(n^3)).
+It may be noticed the for both the sequential and parallel methods the * operator takes relatively
+much more time then the + operator (for example, on the big set, the + operator takes less then 1
+second where the * operator takes approximately 16 seconds!).
